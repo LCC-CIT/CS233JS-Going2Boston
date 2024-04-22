@@ -68,14 +68,8 @@ class Game {
             sum += die.value;
         }
         // switch players
-        if (this.#currentPlayer === 0) {
-            this.#currentPlayer = 1;
-        }
-        else {
-            this.#currentPlayer = 0;
-        }
+        this.#currentPlayer = (this.#currentPlayer + 1) % this.#players.length;
         return sum;
     }
-
 
 }

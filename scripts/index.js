@@ -60,7 +60,8 @@ function displayDice() {
 
 /******** Testing *****/
 
-function testGame() {
+// test to see if players are switched after the score is calculated
+function testSwitchPlayer() {
     console.log("Current player: " + boston.getCurrentPlayer().number);
     boston.setDieAside(0);
     boston.setDieAside(0);
@@ -68,5 +69,7 @@ function testGame() {
     let score = boston.getScore();
     console.log("Score: " + score);
     console.log("Current player: " + boston.getCurrentPlayer().number);
-    
+    score = boston.getScore();
+    console.log("Score: " + score);
+    console.log("Current player: " + boston.getCurrentPlayer().number);
 }

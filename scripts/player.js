@@ -16,7 +16,6 @@ class Player
         this.#number = 0;
         this.#totalScore = 0;
         this.#roundScore = 0;
-        this.#roundsWon = 0;
     }
 
     // Getters and Setters
@@ -24,12 +23,10 @@ class Player
     get number() { return this.#number; }
     get roundScore() { return this.#roundScore; }
     get totalScore() { return this.#totalScore; }
-    get roundsWon() { return this.#roundsWon; }
 
     set number(value) { this.#number = value; }
     set roundScore(value) { this.#roundScore = value; }
     set totalScore(value) { this.#totalScore = value; }
-    set roundsWon(value) { this.#roundsWon = value; }
 
     // Roll all the dice in the array passed to the player
     roll(dice)
@@ -41,32 +38,12 @@ class Player
     }
 
     // Calculate the socre for this round and add it to the player's total score
-    calculateScore(dice, round)
+    calculateScore(dice)
     {
-        let rollScore = 0;
-        for (let i = 0; i < dice.length; i++)
+        for (let die of dice)
         {
-            if (dice[i].value === round)
-            {
-                rollScore++;
-            }
+            this.#roundScore += die.value;
         }
-        if (rollScore === 3)  // all die match and match round, this is a bunco!
-        {
-            rollScore = BUNCO;
-        }
-        // If all the die are the same value, the player scored 5 points
-         else if (dice.every(d => d.value === dice[0].value)) 
-        {
-            rollScore = 5;
-        }
-
-        this.#roundScore += rollScore;
-        // Round score can't be over BUNCO
-        if (this.#roundScore > BUNCO)
-        {
-            this.#roundScore = BUNCO;
-        }
-        return rollScore;
+        return this.#roundScore;
     }
 }
