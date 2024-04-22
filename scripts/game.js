@@ -11,10 +11,10 @@ class Game {
         this.#players = [];
         this.#dice = [];
         this.#scoreDice = [];
-        this.#currentPlayer = 0;
+        this.#currentPlayer = 0; // index to the player array
 
 
-        // put six die in the dice array
+        // put die in the dice array
         for (let i = 0; i < NUMBER_OF_DIE; i++) {
             this.#dice.push(new Die());
         }
@@ -28,10 +28,12 @@ class Game {
     
     // Add a player to the game
     addPlayer(name) {
-        this.#players.push(new Player(name));
+        let player = new Player(name);
+        player.number = this.#players.length + 1;
+        this.#players.push(player);
     }
 
-    // Get the current player
+    // Get the current player object
     getCurrentPlayer() {
         return this.#players[this.#currentPlayer];
     }
@@ -41,7 +43,7 @@ class Game {
         this.getCurrentPlayer().roll(this.#dice);
     }
 
-    // get the values of the dice
+    // get the values of all the dice
     getDiceValues() {
         let values = [];
         for (let die of this.#dice) {
@@ -50,6 +52,7 @@ class Game {
         return values;
     }
 
+    // Move a die from the dice to roll and put it with the score dice
     setDieAside(index) {
         // remove the die from the dice array and add it to the scoreDice array
         let removedDice = this.#dice.splice(index, 1); // splice returns an array of Die objects
@@ -64,6 +67,15 @@ class Game {
         for (let die of this.#scoreDice) {
             sum += die.value;
         }
+        // switch players
+        if (this.#currentPlayer === 0) {
+            this.#currentPlayer = 1;
+        }
+        else {
+            this.#currentPlayer = 0;
+        }
         return sum;
     }
+
+
 }

@@ -57,3 +57,16 @@ function displayDice() {
         }
     }
 }
+
+/******** Testing *****/
+
+function testGame() {
+    console.log("Current player: " + boston.getCurrentPlayer().number);
+    boston.setDieAside(0);
+    boston.setDieAside(0);
+    boston.setDieAside(0);
+    let score = boston.getScore();
+    console.log("Score: " + score);
+    console.log("Current player: " + boston.getCurrentPlayer().number);
+    
+}
