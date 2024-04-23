@@ -31,7 +31,7 @@ class Game {
         this.#players.push(player);
     }
 
-    // Get the current player object
+    // Returns the current player object
     getCurrentPlayer() {
         return this.#players[this.#currentPlayer];
     }
@@ -43,7 +43,7 @@ class Game {
        }
    }
 
-    // get the values of all the dice that can be rolled
+    // get the values of the dice that can be rolled
     getDiceValues() {
         let values = [];
         for (let die of this.#dice) {
@@ -61,7 +61,7 @@ class Game {
         return dieRemoved.value;
     }
 
-    // Get the sum of the score dice values
+    // Returns the sum of the score dice values
     getScore() {
         let sum = 0;
         for (let die of this.#scoreDice) {

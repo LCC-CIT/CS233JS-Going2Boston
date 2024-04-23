@@ -1,4 +1,4 @@
-// Written by Brian Bird, 4/9/2024 with the assistance of GitHub Copilot
+// Written by Brian Bird, 4/9/2024 for the Going to Boston dice game */
 
 class Die
 {
