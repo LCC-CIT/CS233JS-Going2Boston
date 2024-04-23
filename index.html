@@ -17,12 +17,13 @@
         <p><a href="https://www.dicegamedepot.com/going-to-boston-dice-game-rules/">How to play the game.</a></p>
         <p>Click on a die you want to keep and then click the "Roll" button to roll the remaining dice.</p>
         <p>Click the "Score" button to add up the score and end your turn.</p>
-        
+
     </div>
     <!-- Two rows of three die each -->
 
-    <div class="container text-center  bg-dark">
-        <h3>Dice to Roll</h3>
+    <div class="container text-center text-white bg-dark">
+        <h3 class="text-center"><span id="player">1</span>'s Turn</h3>
+        <h4>Dice to Roll</h4>
         <!-- A row with three dice -->
         <div class="row">
             <div class="col">
@@ -47,7 +48,7 @@
 
     <!-- dice set aside for scoring -->
     <div class="container my-3 text-center text-white bg-dark">
-        <h3>Dice to Score</h3>
+        <h4>Dice to Score</h4>
         <div class="row">
             <div class="col">
                 <img id="s0">
@@ -64,14 +65,42 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <button id="score" type="button" class="btn btn-primary">Score</button>
-                <button id="end" type="button" class="btn btn-primary">End Turn</button>
+                <h4 class="my-3">Score: <span id="points">0</span></h4>
             </div>
             <div class="col"></div>
         </div>
-        <h3 class="my-3">Score: <span id="points">0</span></h3>
+        <button id="endTurn" type="button" class="btn btn-primary">End Turn</button>
+        <button id="endRound" type="button" class="btn btn-primary">End round</button>
     </div>
-    <h3 class="text-center"><span id="player">1</span>'s Turn</h3>
+
+    <!-- Scores -->
+    <div class="container my-3 text-center text-white bg-dark">
+        <h3>Game Scores</h3>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <h4><span id="player">Player 1</span></h4>
+            </div>
+            <div class="col">
+                <h4><span id="player">Player 2</span></h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h4>Round Score:</h4>
+                <h4>Rounds Won:</h4>
+            </div>
+            <div class="col">
+                <h4 id="player1RoundScore"></h4>
+                <h4 id="player1RoundWins"></h4>
+            </div>
+            <div class="col">
+                <h4 id="player2RoundScore"></h4>
+                <h4 id="player2RoundWins"></h4>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

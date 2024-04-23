@@ -13,13 +13,13 @@ boston.addPlayer("Wayne");
 // Initialize the page
 document.getElementById("player").textContent = boston.getCurrentPlayer().name;
 // disable score and end turn buttons
-document.getElementById("score").disabled = true;
-document.getElementById("end").disabled = true;
+document.getElementById("endTurn").disabled = true;
+document.getElementById("endRound").disabled = true;
 
 // Event handlers for the bottons
 document.getElementById("roll").addEventListener("click", rollDice);
-document.getElementById("score").addEventListener("click", scoreDice);
-document.getElementById("end").addEventListener("click", endTurn);
+document.getElementById("endTurn").addEventListener("click", endTurn);
+document.getElementById("endRound").addEventListener("click", endRound);
 
 // Event handlers for the dice images so they can be clicked to set aside
 for (let i = 0; i < NUMBER_OF_DIE; i++) {
@@ -36,28 +36,26 @@ function rollDice() {
     }
 }
 
-// get the score of the dice set aside for scoring
-function scoreDice() {
-    console.log("scoreDice called \n");
-    document.getElementById("points").textContent = boston.getScore();
-}
-
 function setAside() {
     // remove the die from the dice array and add it to the scoreDice array 
     let value = boston.setDieAside(Number(this.id));
     displayDice();
     // add the image to the score dice area
     document.getElementById(`s${boston.scoreDice.length - 1}`).src = `images/die${value}.png`;
-    // enable the score button
-    document.getElementById("score").disabled = false;
+    // update the score
+    document.getElementById("points").textContent = boston.getScore();
     // if there are three dice in the scoreDice array, enable the end turn button
     if (boston.scoreDice.length === NUMBER_OF_DIE) {
-        document.getElementById("end").disabled = false;
+        document.getElementById("endTurn").disabled = false;
     }
 }
 
 function endTurn() {
-    boston.endTurn();
+    // enable the End Round button if player 2's turn ended
+    if (boston.getCurrentPlayer().number === 2) {
+        document.getElementById("endRound").disabled = false;
+    }
+    boston.endTurn();  // will switch players and reset the dice
     document.getElementById("points").textContent = "";
     document.getElementById("player").textContent = boston.getCurrentPlayer().name;
     // clear the score dice images
@@ -65,9 +63,15 @@ function endTurn() {
         document.getElementById(`s${i}`).src = "";
     }
     displayDice();
-    // disable the score and end turn buttons
-    document.getElementById("score").disabled = true;
-    document.getElementById("end").disabled = true;
+    // disable the end turn button
+    document.getElementById("endTurn").disabled = true;
+    displayScores();
+}
+
+// end the current round
+function endRound() {
+    boston.endRound();
+    displayScores();
 }
 
 // helper function to display the dice values
@@ -82,6 +86,14 @@ function displayDice() {
             // set the img to "" for the die that aren't there any more
             document.getElementById(`${i}`).src = "";
         }
+    }
+}
+
+function displayScores() {
+    // display the scores of the players
+    for (let i = 0; i < boston.players.length; i++) {
+        document.getElementById(`player${i + 1}RoundScore`).textContent = boston.players[i].roundScore;
+        document.getElementById(`player${i + 1}RoundWins`).textContent = boston.players[i].roundWins;
     }
 }
 

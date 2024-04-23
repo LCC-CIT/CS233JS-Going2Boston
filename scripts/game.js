@@ -1,4 +1,4 @@
-/* Written by Brian Bird, 4/16/24 */
+/* Going to Boston dice game, written by Brian Bird, 4/16/24, revised 4/22/24 */
 
 class Game {
     // private fields (instance variables)
@@ -13,7 +13,6 @@ class Game {
         this.#scoreDice = [];
         this.#currentPlayer = 0; // index to the player array
 
-
         // put die in the dice array
         for (let i = 0; i < NUMBER_OF_DIE; i++) {
             this.#dice.push(new Die());
@@ -21,10 +20,9 @@ class Game {
     }
 
     // getters
-
-    // TODO: remove the getters for the private fields
     get dice() { return this.#dice; }
     get scoreDice() { return this.#scoreDice; }
+    get players() { return this.#players; }
 
     // Add a player to the game
     addPlayer(name) {
@@ -38,12 +36,14 @@ class Game {
         return this.#players[this.#currentPlayer];
     }
 
-    // Pass the dice to the current player and have them roll
-    rollDice() {
-        this.getCurrentPlayer().roll(this.#dice);
-    }
+   // Roll the dice
+   rollDice() {
+       for (let die of this.#dice) {
+           die.roll();
+       }
+   }
 
-    // get the values of all the dice
+    // get the values of all the dice that can be rolled
     getDiceValues() {
         let values = [];
         for (let die of this.#dice) {
@@ -74,13 +74,35 @@ class Game {
     endTurn() {
         // add the score to the player's total score
         let score = this.getScore();
-        this.getCurrentPlayer().totalScore += score;
+        this.getCurrentPlayer().roundScore = score;
         // put the dice back in the roll dice array
         this.#dice = this.#dice.concat(this.#scoreDice);
         // clear the score dice
         this.#scoreDice = [];
         // switch players
         this.#currentPlayer = (this.#currentPlayer + 1) % this.#players.length;
+    }
+
+    endRound() {
+        // Determine the winner of the round that just ended (for any number of players)
+        // copy the players array into a temporary array and sort it by round score
+        let tempPlayers = this.#players.slice();
+        tempPlayers.sort((a, b) => b.roundScore - a.roundScore);
+        // give the winner(s) a round win
+        let winner = tempPlayers[0];
+        winner.roundWins++;
+        // if there is a tie, give all the winners a round win
+        for (let i = 1; i < tempPlayers.length; i++) {
+            if (tempPlayers[i].roundScore === winner.roundScore) {
+                tempPlayers[i].roundWins++;
+            }
+        }
+        // reset the round scores
+        for (let player of this.#players) {
+            player.roundScore = 0;
+        }
+
+        
     }
 
 }

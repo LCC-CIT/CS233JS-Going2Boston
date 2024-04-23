@@ -5,16 +5,15 @@ class Player
     // declare private instance variables
     #name
     #number // player number
-    #totalScore
+    #roundWins
     #roundScore
-    #roundsWon
 
     constructor(name)
     {
         // Initialize instance variables.
         this.#name = name;
-        this.#number = 0;
-        this.#totalScore = 0;
+        this.#number = 0;  // palyer number
+        this.#roundWins = 0;
         this.#roundScore = 0;
     }
 
@@ -22,28 +21,10 @@ class Player
     get name() {return this.#name; }
     get number() { return this.#number; }
     get roundScore() { return this.#roundScore; }
-    get totalScore() { return this.#totalScore; }
+    get roundWins() { return this.#roundWins; }
 
     set number(value) { this.#number = value; }
     set roundScore(value) { this.#roundScore = value; }
-    set totalScore(value) { this.#totalScore = value; }
+    set roundWins(value) { this.#roundWins = value; }
 
-    // Roll all the dice in the array passed to the player
-    roll(dice)
-    {
-        for (let i = 0; i < dice.length; i++)
-        {
-            dice[i].roll();
-        }
-    }
-
-    // Calculate the socre for this round and add it to the player's total score
-    calculateScore(dice)
-    {
-        for (let die of dice)
-        {
-            this.#roundScore += die.value;
-        }
-        return this.#roundScore;
-    }
 }
