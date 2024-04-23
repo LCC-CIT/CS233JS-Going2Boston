@@ -7,7 +7,7 @@ class Game {
     #scoreDice
     #currentPlayer
 
-    constructor() { 
+    constructor() {
         this.#players = [];
         this.#dice = [];
         this.#scoreDice = [];
@@ -18,14 +18,14 @@ class Game {
         for (let i = 0; i < NUMBER_OF_DIE; i++) {
             this.#dice.push(new Die());
         }
-    }   
+    }
 
     // getters
 
     // TODO: remove the getters for the private fields
     get dice() { return this.#dice; }
     get scoreDice() { return this.#scoreDice; }
-    
+
     // Add a player to the game
     addPlayer(name) {
         let player = new Player(name);
@@ -59,7 +59,7 @@ class Game {
         let dieRemoved = removedDice[0];
         this.#scoreDice.push(dieRemoved);
         return dieRemoved.value;
-    }   
+    }
 
     // Get the sum of the score dice values
     getScore() {
@@ -67,9 +67,20 @@ class Game {
         for (let die of this.#scoreDice) {
             sum += die.value;
         }
+        return sum;
+    }
+
+    // End the curreent player's turn
+    endTurn() {
+        // add the score to the player's total score
+        let score = this.getScore();
+        this.getCurrentPlayer().totalScore += score;
+        // put the dice back in the roll dice array
+        this.#dice = this.#dice.concat(this.#scoreDice);
+        // clear the score dice
+        this.#scoreDice = [];
         // switch players
         this.#currentPlayer = (this.#currentPlayer + 1) % this.#players.length;
-        return sum;
     }
 
 }
