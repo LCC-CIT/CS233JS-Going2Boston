@@ -6,12 +6,14 @@ class Game {
     #dice
     #scoreDice
     #currentPlayer
+    #roundNumber
 
     constructor() {
         this.#players = [];
         this.#dice = [];
         this.#scoreDice = [];
         this.#currentPlayer = 0; // index to the player array
+        this.#roundNumber = 1;  // round number, just gets displayed on the page
 
         // put die in the dice array
         for (let i = 0; i < NUMBER_OF_DIE; i++) {
@@ -101,7 +103,9 @@ class Game {
         for (let player of this.#players) {
             player.roundScore = 0;
         }
-
+        // increment round number
+        this.#roundNumber++;
+        return this.#roundNumber;
         
     }
 

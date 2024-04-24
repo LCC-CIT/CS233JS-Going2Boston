@@ -70,7 +70,7 @@ function endTurn() {
 
 // end the current round
 function endRound() {
-    boston.endRound();
+    document.getElementById("round").textContent = boston.endRound();
     displayScores();
 }
 
@@ -89,8 +89,8 @@ function displayDice() {
     }
 }
 
+// display the scores of the players
 function displayScores() {
-    // display the scores of the players
     for (let i = 0; i < boston.players.length; i++) {
         document.getElementById(`player${i + 1}RoundScore`).textContent = boston.players[i].roundScore;
         document.getElementById(`player${i + 1}RoundWins`).textContent = boston.players[i].roundWins;
