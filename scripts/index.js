@@ -21,9 +21,17 @@ document.getElementById("roll").addEventListener("click", rollDice);
 document.getElementById("endTurn").addEventListener("click", endTurn);
 document.getElementById("endRound").addEventListener("click", endRound);
 
-// Event handlers for the dice images so they can be clicked to set aside
-for (let i = 0; i < NUMBER_OF_DIE; i++) {
-    document.getElementById(`${i}`).addEventListener("click", setAside);
+function enableMovingDice(canMove) {
+    // Event handlers for the dice images so they can be clicked to set them aside die for scoring
+    for (let i = 0; i < NUMBER_OF_DIE; i++) {
+        let imgElement = document.getElementById(`${i}`);
+        if (canMove) {
+            imgElement.onclick = setAside;
+        }
+        else {
+            imgElement.onclick = null;
+        }
+    }
 }
 
 // event handlers
@@ -34,6 +42,8 @@ function rollDice() {
     for (let i = 0; i < boston.dice.length; i++) {
         document.getElementById(`${i}`).src = `images/die${values[i]}.png`;
     }
+    // enable the dice images to be clicked
+    enableMovingDice(true);
 }
 
 function setAside() {
@@ -48,6 +58,8 @@ function setAside() {
     if (boston.scoreDice.length === NUMBER_OF_DIE) {
         document.getElementById("endTurn").disabled = false;
     }
+    // disable the dice images
+    enableMovingDice(false);
 }
 
 function endTurn() {
