@@ -24,9 +24,30 @@
             <li>Click the "End Round" button to add round wins to the scores.</li>
         </ul>
     </div>
-    <!-- Two rows of three die each -->
 
     <div class="container text-center text-white bg-dark">
+        <h3 class="text-center">Enter Player Names</h3>
+        <div class="row mb-3">
+            <div class="col-2"></div>
+            <div class="col">
+                <input type="text" placeholder="Player 1" id="player1Name">
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2"></div>
+            <div class="col">
+                <input type="text" placeholder="Player 2" id="player2Name">
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <button class="btn btn-primary" id="addPlayers">Save Names</button>
+    </div>
+    <br>
+
+    <!-- The dice that can be rolled -->
+    <div class="container text-center text-white bg-dark">
+
         <h3 class="text-center">Round <span id="round">1</span>, <span id="player">1</span>'s Turn</h3>
         <h4>Dice to Roll</h4>
         <!-- A row with three dice -->
@@ -84,10 +105,10 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <h4><span id="player">Player 1</span></h4>
+                <h4><span id="player1">Player 1</span></h4>
             </div>
             <div class="col">
-                <h4><span id="player">Player 2</span></h4>
+                <h4><span id="player2">Player 2</span></h4>
             </div>
         </div>
 

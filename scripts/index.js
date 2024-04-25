@@ -7,34 +7,42 @@ const NUMBER_OF_SIDES = 6;   // number of die images--representing the sides of 
 
 let boston = new Game();
 // Temporary for testing
+/*
 boston.addPlayer("Brian");
+document.getElementById("player1").textContent = boston.players[0].name;
 boston.addPlayer("Wayne");
+document.getElementById("player2").textContent = boston.players[1].name;
+*/
+
 
 // Initialize the page
-document.getElementById("player").textContent = boston.getCurrentPlayer().name;
+
 // disable score and end turn buttons
 document.getElementById("endTurn").disabled = true;
 document.getElementById("endRound").disabled = true;
 
 // Event handlers for the bottons
+document.getElementById("addPlayers").addEventListener("click", addPlayers);
 document.getElementById("roll").addEventListener("click", rollDice);
 document.getElementById("endTurn").addEventListener("click", endTurn);
 document.getElementById("endRound").addEventListener("click", endRound);
 
-function enableMovingDice(canMove) {
-    // Event handlers for the dice images so they can be clicked to set them aside die for scoring
-    for (let i = 0; i < NUMBER_OF_DIE; i++) {
-        let imgElement = document.getElementById(`${i}`);
-        if (canMove) {
-            imgElement.onclick = setAside;
-        }
-        else {
-            imgElement.onclick = null;
-        }
-    }
+// add players to the game
+function addPlayers() {
+    let player1Name = document.getElementById("player1Name").value;
+    let player2Name = document.getElementById("player2Name").value;
+    boston.addPlayer(player1Name);
+    boston.addPlayer(player2Name);
+    document.getElementById("player").textContent = boston.getCurrentPlayer().name;
+    document.getElementById("player1").textContent = player1Name;
+    document.getElementById("player2").textContent = player2Name;
+    document.getElementById("addPlayers").disabled = true;
+    document.getElementById("roll").disabled = false;
+    enableMovingDice(false);
 }
 
 // event handlers
+
 function rollDice() {
     boston.rollDice();
     // set the images to the dice values
@@ -86,6 +94,19 @@ function endRound() {
     displayScores();
 }
 
+// helper function to enable or disable the dice images to be clicked
+function enableMovingDice(canMove) {
+    // Event handlers for the dice images so they can be clicked to set them aside die for scoring
+    for (let i = 0; i < NUMBER_OF_DIE; i++) {
+        let imgElement = document.getElementById(`${i}`);
+        if (canMove) {
+            imgElement.onclick = setAside;
+        }
+        else {
+            imgElement.onclick = null;
+        }
+    }
+}
 // helper function to display the dice values
 function displayDice() {
     let values = boston.getDiceValues();

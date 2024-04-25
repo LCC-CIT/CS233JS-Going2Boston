@@ -12,3 +12,7 @@ button {
     width: 125px;
     margin: 5px;
 }
+
+.wide-button {
+    width:fit-content;
+}
