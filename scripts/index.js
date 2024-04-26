@@ -17,18 +17,19 @@ document.getElementById("player2").textContent = boston.players[1].name;
 
 // Initialize the page
 
-// disable score and end turn buttons
+// disable all buttons except start
 document.getElementById("endTurn").disabled = true;
 document.getElementById("endRound").disabled = true;
+document.getElementById("roll").disabled = true;
 
 // Event handlers for the bottons
-document.getElementById("addPlayers").addEventListener("click", addPlayers);
+document.getElementById("start").addEventListener("click", start);
 document.getElementById("roll").addEventListener("click", rollDice);
 document.getElementById("endTurn").addEventListener("click", endTurn);
 document.getElementById("endRound").addEventListener("click", endRound);
 
-// add players to the game
-function addPlayers() {
+// add players and start the game
+function start() {
     let player1Name = document.getElementById("player1Name").value;
     let player2Name = document.getElementById("player2Name").value;
     boston.addPlayer(player1Name);
@@ -36,9 +37,9 @@ function addPlayers() {
     document.getElementById("player").textContent = boston.getCurrentPlayer().name;
     document.getElementById("player1").textContent = player1Name;
     document.getElementById("player2").textContent = player2Name;
-    document.getElementById("addPlayers").disabled = true;
+    document.getElementById("start").disabled = true;
     document.getElementById("roll").disabled = false;
-    enableMovingDice(false);
+    enableSetAside(false);
 }
 
 // event handlers
@@ -50,8 +51,9 @@ function rollDice() {
     for (let i = 0; i < boston.dice.length; i++) {
         document.getElementById(`${i}`).src = `images/die${values[i]}.png`;
     }
-    // enable the dice images to be clicked
-    enableMovingDice(true);
+    // allow the dice images to be clicked, don't allow another roll
+    enableSetAside(true);
+    document.getElementById("roll").disable = true;
 }
 
 function setAside() {
@@ -62,18 +64,44 @@ function setAside() {
     document.getElementById(`s${boston.scoreDice.length - 1}`).src = `images/die${value}.png`;
     // update the score
     document.getElementById("points").textContent = boston.getScore();
-    // if there are three dice in the scoreDice array, enable the end turn button
+    // if there are three dice in the scoreDice array, enable the end turn button, disable roll
     if (boston.scoreDice.length === NUMBER_OF_DIE) {
         document.getElementById("endTurn").disabled = false;
+        document.getElementById("roll").disabled = true;
     }
-    // disable the dice images
-    enableMovingDice(false);
+    else {
+        document.getElementById("roll").disabled = false;
+    }
+    // only allow one die to be set aside aside, enable rolling
+    enableSetAside(false);
+
 }
+
+// helper function to enable or disable the click event on dice images
+function enableSetAside(canSetAside) {
+    // Event handlers for the dice images so they can be clicked and set aside die for scoring
+    for (let i = 0; i < NUMBER_OF_DIE; i++) {
+        let imgElement = document.getElementById(`${i}`);
+        if (canSetAside) {
+            imgElement.onclick = setAside;
+            imgElement.style = "opacity: 1.0;";
+        }
+        else {
+            imgElement.onclick = null;
+            imgElement.style = "opacity: 0.5;";
+        }
+    }
+}
+
 
 function endTurn() {
     // enable the End Round button if player 2's turn ended
     if (boston.getCurrentPlayer().number === 2) {
         document.getElementById("endRound").disabled = false;
+        document.getElementById("roll").disabled = true;
+    }
+    else {
+        document.getElementById("roll").disabled = false;
     }
     boston.endTurn();  // will switch players and reset the dice
     document.getElementById("points").textContent = "";
@@ -85,28 +113,19 @@ function endTurn() {
     displayDice();
     // disable the end turn button
     document.getElementById("endTurn").disabled = true;
+
     displayScores();
 }
 
 // end the current round
 function endRound() {
     document.getElementById("round").textContent = boston.endRound();
+    document.getElementById("roll").disabled = false;
+    document.getElementById("endRound").disabled = true;
     displayScores();
 }
 
-// helper function to enable or disable the dice images to be clicked
-function enableMovingDice(canMove) {
-    // Event handlers for the dice images so they can be clicked to set them aside die for scoring
-    for (let i = 0; i < NUMBER_OF_DIE; i++) {
-        let imgElement = document.getElementById(`${i}`);
-        if (canMove) {
-            imgElement.onclick = setAside;
-        }
-        else {
-            imgElement.onclick = null;
-        }
-    }
-}
+
 // helper function to display the dice values
 function displayDice() {
     let values = boston.getDiceValues();
@@ -130,7 +149,9 @@ function displayScores() {
     }
 }
 
-/******** Testing *****/
+/*******************************/
+/******** Just for Testing *****/
+/*******************************/
 
 // test to see if players are switched after the score is calculated
 function testSwitchPlayer() {
