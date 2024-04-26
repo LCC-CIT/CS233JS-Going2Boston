@@ -6,14 +6,6 @@ const NUMBER_OF_DIE = 3;
 const NUMBER_OF_SIDES = 6;   // number of die images--representing the sides of the die
 
 let boston = new Game();
-// Temporary for testing
-/*
-boston.addPlayer("Brian");
-document.getElementById("player1").textContent = boston.players[0].name;
-boston.addPlayer("Wayne");
-document.getElementById("player2").textContent = boston.players[1].name;
-*/
-
 
 // Initialize the page
 
@@ -21,6 +13,7 @@ document.getElementById("player2").textContent = boston.players[1].name;
 document.getElementById("endTurn").disabled = true;
 document.getElementById("endRound").disabled = true;
 document.getElementById("roll").disabled = true;
+enableSetAside(false);
 
 // Event handlers for the bottons
 document.getElementById("start").addEventListener("click", start);
@@ -32,14 +25,18 @@ document.getElementById("endRound").addEventListener("click", endRound);
 function start() {
     let player1Name = document.getElementById("player1Name").value;
     let player2Name = document.getElementById("player2Name").value;
-    boston.addPlayer(player1Name);
-    boston.addPlayer(player2Name);
-    document.getElementById("player").textContent = boston.getCurrentPlayer().name;
-    document.getElementById("player1").textContent = player1Name;
-    document.getElementById("player2").textContent = player2Name;
-    document.getElementById("start").disabled = true;
-    document.getElementById("roll").disabled = false;
-    enableSetAside(false);
+    if (player1Name === "" || player2Name === "") {
+        alert("Please enter both player names.");
+    }
+    else {
+        boston.addPlayer(player1Name);
+        boston.addPlayer(player2Name);
+        document.getElementById("player").textContent = boston.getCurrentPlayer().name;
+        document.getElementById("player1").textContent = player1Name;
+        document.getElementById("player2").textContent = player2Name;
+        document.getElementById("start").disabled = true;
+        document.getElementById("roll").disabled = false;
+    }
 }
 
 // event handlers
