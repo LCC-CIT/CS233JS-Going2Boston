@@ -123,8 +123,6 @@ function enableSetAside(canSetAside) {
     }
 }
 
-
-
 // Display the dice values
 function displayDice() {
     let values = boston.getDiceValues();

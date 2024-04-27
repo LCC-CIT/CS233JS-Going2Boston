@@ -2,7 +2,7 @@
 
 class Player
 {
-    // declare private instance variables
+    // declare private instance variables (aka fields)
     #name
     #number // player number
     #roundWins
@@ -10,7 +10,7 @@ class Player
 
     constructor(name)
     {
-        // Initialize instance variables.
+        // Initialize instance variables
         this.#name = name;
         this.#number = 0;  // palyer number
         this.#roundWins = 0;

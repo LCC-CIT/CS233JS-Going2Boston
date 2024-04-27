@@ -1,7 +1,7 @@
 /* Going to Boston dice game, written by Brian Bird, 4/16/24, revised 4/22/24 */
 
 class Game {
-    // private fields (instance variables)
+    // private fields (aka instance variables)
     #players
     #dice
     #scoreDice
@@ -45,7 +45,7 @@ class Game {
        }
    }
 
-    // get the values of the dice that can be rolled
+    // get the values of the dice rolled dice
     getDiceValues() {
         let values = [];
         for (let die of this.#dice) {
@@ -54,7 +54,7 @@ class Game {
         return values;
     }
 
-    // Move a die from the dice to roll and put it with the score dice
+    // Move a die from the dice to roll and put it in the score dice array
     setDieAside(index) {
         // remove the die from the dice array and add it to the scoreDice array
         let removedDice = this.#dice.splice(index, 1); // splice returns an array of Die objects
@@ -72,7 +72,7 @@ class Game {
         return sum;
     }
 
-    // End the curreent player's turn
+    // End the curreent player's turn, update scores, swith players
     endTurn() {
         // add the score to the player's total score
         let score = this.getScore();
@@ -85,6 +85,7 @@ class Game {
         this.#currentPlayer = (this.#currentPlayer + 1) % this.#players.length;
     }
 
+    // End the round, determine the winner(s) of the round, and update/reset scores
     endRound() {
         // Determine the winner of the round that just ended (for any number of players)
         // copy the players array into a temporary array and sort it by round score
