@@ -14,7 +14,7 @@ In this implementation of the game, this is how the game-play works:
   - The next round proceeds like the first one.
 - Players decide how many rounds they want to play. the player who wins the most rounds wins the game.
 
-
+Here's a [link to the game running online](https://citstudent.lanecc.edu/~brianb/CS233JS/Examples/Going2Boston/)
 
 
 ------
