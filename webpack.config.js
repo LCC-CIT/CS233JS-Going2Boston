@@ -1,4 +1,6 @@
 const path = require('path');
+const htmlWebpackPlugin = require("html-webpack-plugin");
+const copyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: 'development',
@@ -24,9 +26,17 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-     title: 'Development',
+    new htmlWebpackPlugin({
+     template: "./index.html"
     }),
+    new copyPlugin({
+      patterns: [
+          {
+              from: path.resolve(__dirname, "./images"),
+              to: path.resolve(__dirname, "dist/images"),
+          }
+      ],
+  })
   ],
   devtool: 'inline-source-map'
 };
