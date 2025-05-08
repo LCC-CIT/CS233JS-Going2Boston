@@ -26,5 +26,4 @@ export class Player
     set number(value) { this.#number = value; }
     set roundScore(value) { this.#roundScore = value; }
     set roundWins(value) { this.#roundWins = value; }
-
 }
