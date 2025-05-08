@@ -1,6 +1,6 @@
 // Written by Brian Bird, 4/9/2024 for the Going to Boston dice game */
 
-class Player
+export class Player
 {
     // declare private instance variables (aka fields)
     #name

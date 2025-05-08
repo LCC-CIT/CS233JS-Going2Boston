@@ -1,6 +1,8 @@
 /* I/O code for the Going to Boston dice game.
    Written by Brian Bird, 4/16/2024, revised 4/26/24 */
 
+import { Game } from './game.js';
+
 // Global constants
 const NUMBER_OF_DIE = 3;
 const NUMBER_OF_SIDES = 6;   // number of die images--representing the sides of the die

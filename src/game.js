@@ -1,6 +1,9 @@
 /* Going to Boston dice game, written by Brian Bird, 4/16/24, revised 4/22/24 */
 
-class Game {
+import { Player } from './player.js';
+import { Die } from './die.js';
+
+export class Game {
     // private fields (aka instance variables)
     #players
     #dice
