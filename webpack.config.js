@@ -7,7 +7,7 @@ module.exports = {
     entry: './scripts/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'going2boston.bundle.js',
+        filename: '[name].bundle.js',
     },
     module: {
         rules: [
@@ -30,5 +30,12 @@ module.exports = {
                 }
             ],
         })
-    ]
+    ],
+    devtool: 'inline-source-map',
+    devServer: {
+        static: './dist',
+    },
+    optimization: {
+        runtimeChunk: 'single',
+    }
 };

@@ -3,7 +3,7 @@
 import { Player } from './player.js';
 import { Die } from './die.js';
 
-export const NUMBER_OF_DIE = 6;
+export const NUMBER_OF_DIE = 3;
 
 export class Game {
     // private fields (aka instance variables)
