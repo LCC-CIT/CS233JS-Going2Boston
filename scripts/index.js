@@ -2,6 +2,7 @@
    Written by Brian Bird, 4/16/2024, revised 4/26/24 */
 
 import '../styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Game } from './game.js';
 import { NUMBER_OF_DIE } from './game.js';
 
