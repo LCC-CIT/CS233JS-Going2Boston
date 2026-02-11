@@ -21,6 +21,6 @@ Here's a tutorial explaining how the webpack.config.js and package.json files we
 
 ------
 
-Written by [Brian Bird](https://profbird.dev), Lane Community College, [CIT department](https://www.lanecc.edu/programs-academics/academic-departments/business-technology-and-trades/computer-information-technology), spring 2024
+Written by [Brian Bird](https://profbird.dev), Lane Community College, [CIT department](https://www.lanecc.edu/programs-academics/academic-departments/business-technology-and-trades/computer-information-technology), spring 2024, revised winter <time>2026</time>
 
 ------
