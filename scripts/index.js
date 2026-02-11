@@ -1,5 +1,6 @@
 /* I/O code for the Going to Boston dice game.
-   Written by Brian Bird, 4/16/2024, revised 4/26/24 */
+   Written by Brian Bird, 4/16/2024, revised 4/26/24.
+   Added webpack to the project 2/11/26 */
 
 import '../styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
