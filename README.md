@@ -16,12 +16,11 @@ In this implementation of the game, this is how the game-play works:
 
 Here's a [link to the game running online](https://citstudent.lanecc.edu/~brianb/CS233JS/Examples/Going2Boston/)
 
+Here's a tutorial explaining how the webpack.config.js and package.json files were written: [Setting up Dev Tools](https://lcc-cit.github.io/CS233JS-CourseMaterials/LectureNotes/CS233JS-LN-W06-D2-NodeDevToolSetup.html)
+
 
 ------
 
 Written by [Brian Bird](https://profbird.dev), Lane Community College, [CIT department](https://www.lanecc.edu/programs-academics/academic-departments/business-technology-and-trades/computer-information-technology), spring 2024
 
 ------
-
-
-
